@@ -14,7 +14,8 @@ RUN sed -i "s|listen = 9000|listen = /sock/docker.sock \
 #RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # install the PHP extensions we need
-RUN apk add --update freetype-dev libpng-dev libjpeg-turbo-dev libxml2-dev autoconf g++ imagemagick-dev libtool make \
+
+RUN apk add --update freetype-dev libpng-dev libzip-dev libjpeg-turbo-dev libxml2-dev autoconf g++ imagemagick-dev libtool make \
     && docker-php-ext-configure gd \
         --with-gd \
         --with-freetype-dir=/usr/include/ \
@@ -25,6 +26,9 @@ RUN apk add --update freetype-dev libpng-dev libjpeg-turbo-dev libxml2-dev autoc
     && docker-php-ext-install mysqli \
     && docker-php-ext-install opcache \
     && docker-php-ext-install soap \
+ #   && docker-php-ext-configure intl \
+ #   && docker-php-ext-install intl \
+    && pecl install zlib zip \
     && pecl install imagick \
     && docker-php-ext-enable imagick \
     && apk del autoconf g++ libtool make \

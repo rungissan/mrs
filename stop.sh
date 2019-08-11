@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker-compose -p test stop
+docker-compose -p mrs stop

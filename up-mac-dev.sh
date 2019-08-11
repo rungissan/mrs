@@ -2,5 +2,5 @@
 
 export UID
 export GID
-docker-compose -p test -f  docker-compose.yml  up $@
+docker-compose -p mrs -f  docker-compose.yml  up $@
 
