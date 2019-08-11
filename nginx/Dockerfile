@@ -1,6 +1,6 @@
 FROM nginx:latest
-# RUN addgroup --gid 3000 --system app
-# RUN adduser --uid 3000 --system --disabled-login --disabled-password --gid 3000 app
+RUN addgroup --gid 3000 --system app
+RUN adduser --uid 3000 --system --disabled-login --disabled-password --gid 3000 app
 
 RUN apt-get update && \
     apt-get install -y ca-certificates make gcc g++ python-dev python-setuptools python-pip

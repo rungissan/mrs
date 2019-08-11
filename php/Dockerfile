@@ -1,14 +1,14 @@
 FROM php:7.3-fpm-alpine
 
-# RUN addgroup -g 3000 -S app
-# RUN adduser -u 3000 -S -D -G app app
+RUN addgroup -g 3000 -S app
+RUN adduser -u 3000 -S -D -G app app
  
 # Override Docker configuration: listen on Unix socket instead of TCP
 RUN sed -i "s|listen = 9000|listen = /sock/docker.sock \
+\nlisten.owner = app \
+\nlisten.group = app \
 \nlisten.mode = 0666|" \
 /usr/local/etc/php-fpm.d/zz-docker.conf
-# \nlisten.owner = app \
-# \nlisten.group = app \
 
 # Use the default production configuration
 #RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
